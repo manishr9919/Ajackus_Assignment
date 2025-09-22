@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Management Dashboard</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">User Management Dashboard</h1>
+
+    <!-- Controls -->
+    <div class="flex justify-between items-center mb-4">
+      <button id="addUserBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Add User
+      </button>
+
+      <div class="flex space-x-2">
+        <input id="searchInput" type="text" placeholder="Search..." class="border p-2 rounded" />
+        <button id="filterBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-3 cursor-pointer" data-sort="id">ID</th>
+            <th class="p-3 cursor-pointer" data-sort="firstName">First Name</th>
+            <th class="p-3 cursor-pointer" data-sort="lastName">Last Name</th>
+            <th class="p-3 cursor-pointer" data-sort="email">Email</th>
+            <th class="p-3 cursor-pointer" data-sort="department">Department</th>
+            <th class="p-3">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-end space-x-2 mt-4">
+      <select id="paginationLimit" class="border p-2 rounded">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <button id="prevPage" class="px-4 py-2 bg-gray-300 rounded">Prev</button>
+      <button id="nextPage" class="px-4 py-2 bg-gray-300 rounded">Next</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="userModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h2 id="modalTitle" class="text-xl font-bold mb-4">Add User</h2>
+      <form id="userForm" class="space-y-4">
+        <input id="firstName" type="text" placeholder="First Name" class="w-full border p-2 rounded" required />
+        <input id="lastName" type="text" placeholder="Last Name" class="w-full border p-2 rounded" required />
+        <input id="email" type="email" placeholder="Email" class="w-full border p-2 rounded" required />
+        <input id="department" type="text" placeholder="Department" class="w-full border p-2 rounded" required />
+        <div class="flex justify-end space-x-2">
+          <button type="button" id="closeModal" class="px-4 py-2 bg-gray-400 rounded">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
